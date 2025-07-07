@@ -1,0 +1,218 @@
+<?php
+/**
+ * This file contains the definition of the Tip_The_Helper class, which
+ * is used to begin the plugin's functionality.
+ *
+ * @package       Tip_The_Helper
+ * @subpackage    Tip_The_Helper/includes
+ * @author        Sajjad Hossain Sagor <sagorh672@gmail.com>
+ */
+
+/**
+ * The core plugin class.
+ *
+ * This is used to define admin-specific hooks and public-facing hooks.
+ *
+ * Also maintains the unique identifier of this plugin as well as the current
+ * version of the plugin.
+ *
+ * @since    1.0.0
+ */
+class Tip_The_Helper {
+	/**
+	 * The loader that's responsible for maintaining and registering all hooks that power
+	 * the plugin.
+	 *
+	 * @since     1.0.0
+	 * @access    protected
+	 * @var       Tip_The_Helper_Loader $loader Maintains and registers all hooks for the plugin.
+	 */
+	protected $loader;
+
+	/**
+	 * The unique identifier of this plugin.
+	 *
+	 * @since     1.0.0
+	 * @access    protected
+	 * @var       string $plugin_name The string used to uniquely identify this plugin.
+	 */
+	protected $plugin_name;
+
+	/**
+	 * The current version of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @access    protected
+	 * @var       string $version The current version of the plugin.
+	 */
+	protected $version;
+
+	/**
+	 * Define the core functionality of the plugin.
+	 *
+	 * Set the plugin name and the plugin version that can be used throughout the plugin.
+	 * Load the dependencies and set the hooks for the admin area and
+	 * the public-facing side of the site.
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 */
+	public function __construct() {
+		$this->version     = defined( 'TIP_THE_HELPER_PLUGIN_VERSION' ) ? TIP_THE_HELPER_PLUGIN_VERSION : '1.0.0';
+		$this->plugin_name = 'tip-the-helper';
+
+		$this->load_dependencies();
+		$this->define_admin_hooks();
+		$this->define_public_hooks();
+	}
+
+	/**
+	 * Load the required dependencies for this plugin.
+	 *
+	 * Include the following files that make up the plugin:
+	 *
+	 * - Tip_The_Helper_Loader.   Orchestrates the hooks of the plugin.
+	 * - Sajjad_Dev_Settings_API. Provides an interface for interacting with the WordPress Settings API.
+	 * - Tip_The_Helper_Admin.    Defines all hooks for the admin area.
+	 * - Tip_The_Helper_Public.   Defines all hooks for the public side of the site.
+	 *
+	 * Create an instance of the loader which will be used to register the hooks
+	 * with WordPress.
+	 *
+	 * @since     1.0.0
+	 * @access    private
+	 */
+	private function load_dependencies() {
+		/**
+		 * The class responsible for orchestrating the actions and filters of the
+		 * core plugin.
+		 */
+		require_once TIP_THE_HELPER_PLUGIN_PATH . 'includes/class-tip-the-helper-loader.php';
+
+		/**
+		 * The class responsible for defining an interface for interacting with the WordPress Settings API.
+		 */
+		require_once TIP_THE_HELPER_PLUGIN_PATH . 'includes/class-sajjad-dev-settings-api.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the admin area.
+		 */
+		require_once TIP_THE_HELPER_PLUGIN_PATH . 'admin/class-tip-the-helper-admin.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the public-facing
+		 * side of the site.
+		 */
+		require_once TIP_THE_HELPER_PLUGIN_PATH . 'public/class-tip-the-helper-public.php';
+
+		$this->loader = new Tip_The_Helper_Loader();
+	}
+
+	/**
+	 * Register all of the hooks related to the admin area functionality
+	 * of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @access    private
+	 */
+	private function define_admin_hooks() {
+		$plugin_admin = new Tip_The_Helper_Admin( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'plugin_action_links_' . TIP_THE_HELPER_PLUGIN_BASENAME, $plugin_admin, 'add_plugin_action_links' );
+
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'admin_init' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'admin_notices' );
+
+		$this->loader->add_action( 'before_woocommerce_init', $plugin_admin, 'declare_compatibility_with_wc_custom_order_tables' );
+	}
+
+	/**
+	 * Register all of the hooks related to the public-facing functionality
+	 * of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @access    private
+	 */
+	private function define_public_hooks() {
+		$plugin_public = new Tip_The_Helper_Public( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
+		$this->loader->add_action( 'woocommerce_review_order_before_payment', $plugin_public, 'display_tipping_form' );
+		$this->loader->add_action( 'woocommerce_checkout_process', $plugin_public, 'validate_tipping_data' );
+		$this->loader->add_action( 'woocommerce_cart_calculate_fees', $plugin_public, 'apply_tipping_to_cart' );
+	}
+
+	/**
+	 * Run the loader to execute all of the hooks with WordPress.
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 */
+	public function run() {
+		$this->loader->run();
+	}
+
+	/**
+	 * The name of the plugin used to uniquely identify it within the context of WordPress.
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 * @return    string The name of the plugin.
+	 */
+	public function get_plugin_name() {
+		return $this->plugin_name;
+	}
+
+	/**
+	 * The reference to the class that orchestrates the hooks with the plugin.
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 * @return    Tip_The_Helper_Loader Orchestrates the hooks of the plugin.
+	 */
+	public function get_loader() {
+		return $this->loader;
+	}
+
+	/**
+	 * Retrieve the version number of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 * @return    string The version number of the plugin.
+	 */
+	public function get_version() {
+		return $this->version;
+	}
+
+	/**
+	 * Retrieves the value of a specific settings field.
+	 *
+	 * This method fetches the value of a settings field from the WordPress options database.
+	 * It retrieves the entire option group for the given section and then extracts the
+	 * value for the specified field.
+	 *
+	 * @since     1.0.0
+	 * @static
+	 * @access    public
+	 * @param     string $option        The name of the settings field.
+	 * @param     string $section       The name of the section this field belongs to. This corresponds
+	 *                                  to the option name used in `register_setting()`.
+	 * @param     string $default_value Optional. The default value to return if the field's value
+	 *                                  is not found in the database. Default is an empty string.
+	 * @return    string|mixed          The value of the settings field, or the default value if not found.
+	 */
+	public static function get_option( $option, $section, $default_value = '' ) {
+		$options = get_option( $section ); // Get all options for the section.
+
+		// Check if the option exists within the section's options array.
+		if ( isset( $options[ $option ] ) ) {
+			return $options[ $option ]; // Return the option value.
+		}
+
+		return $default_value; // Return the default value if the option is not found.
+	}
+}
