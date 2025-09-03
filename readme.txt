@@ -40,23 +40,27 @@ Install "Tip The Helper" today and let kindness checkout with every order!
 2. Front tipping form
 
 == Frequently Asked Questions ==
-1. How does "Tip The Helper" work?
+= How does "Tip The Helper" work? =
 The plugin adds a customizable tipping field during WooCommerce checkout. Customers can enter a tip amount (fixed, percentage, or custom value) and optionally select who the tip is for (e.g., driver, server). The tip is added to the order total and recorded for reporting.
-2. Can I set default tip amounts?
+
+= Can I set default tip amounts? =
 Yes! In the plugin settings, you can:
-* Offer preset amounts (e.g., $2, $5, $10)
-* Allow percentage-based tips (e.g., 5%, 10%, 15%)
-* Enable custom tips (users enter any amount)
-3. How are tips processed?
+- Offer preset amounts (e.g., $2, $5, $10)
+- Allow percentage-based tips (e.g., 5%, 10%, 15%)
+- Enable custom tips (users enter any amount)
+
+= How are tips processed? =
 Tips are included in the WooCommerce order total and processed as part of the payment. You can:
-* Assign tips to staff manually
-* Use reports to track and distribute tips
-4. Can customers decline to tip?
+- Assign tips to staff manually
+- Use reports to track and distribute tips
+
+= Can customers decline to tip? =
 Absolutely! Tipping is optional by default. You can toggle this in settings.
-5. Can I customize the tipping message?
+
+= Can I customize the tipping message? =
 Yes! Edit the text in settings, e.g.:
-* "Thank your driver! Add a tip?"
-* "Support our team with a gratuity"
+- "Thank your driver! Add a tip?"
+- "Support our team with a gratuity"
 
 == Installation ==
 1. Go to WordPress plugin page
@@ -68,4 +72,7 @@ Yes! Edit the text in settings, e.g.:
 
 == Changelog ==
 = 1.0.0 =
-* Initial release.
+- Initial release.
+
+== Upgrade Notice ==
+Always try to keep your plugin update so that you can get the improved and additional features added to this plugin up to date.
