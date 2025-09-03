@@ -56,8 +56,6 @@ If successful, click Activate Plugin to activate it, or Return to Plugin Install
 
 ## Frequently Asked Questions
 
-### How to use this plugin?
-
 ### How does "Tip The Helper" work?
 The plugin adds a customizable tipping field during WooCommerce checkout. Customers can enter a tip amount (fixed, percentage, or custom value) and optionally select who the tip is for (e.g., driver, server). The tip is added to the order total and recorded for reporting.
 
