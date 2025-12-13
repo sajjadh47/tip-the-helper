@@ -13,4 +13,9 @@ jQuery( document ).ready( function( $ )
 
 		$( 'body' ).trigger( 'update_checkout' );
 	} );
+
+	$( 'form.checkout' ).on( 'change', 'input[name="tip_the_helper_custom"]', function()
+	{
+		$( 'body' ).trigger( 'update_checkout' );
+	} );
 } );

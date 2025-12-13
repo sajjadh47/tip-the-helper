@@ -13,7 +13,7 @@
  * Plugin Name:       Tip the Helper
  * Plugin URI:        https://wordpress.org/plugins/tip-the-helper/
  * Description:       Add a Tipping Feature for Drivers, Servers, or Any Service Provider in WooCommerce
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 5.6
  * Requires PHP:      7.4
  * Author:            Sajjad Hossain Sagor
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'TIP_THE_HELPER_PLUGIN_VERSION', '1.0.0' );
+define( 'TIP_THE_HELPER_PLUGIN_VERSION', '1.0.1' );
 
 /**
  * Define Plugin Folders Path
