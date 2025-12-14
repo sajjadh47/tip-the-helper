@@ -1,6 +1,6 @@
 # Tip the Helper
 
-[![Plugin Banner](https://ps.w.org/tip-the-helper/assets/banner-772x250.png)](https://wordpress.org/plugins/tip-the-helper/)
+[![Plugin Banner](https://ps.w.org/tip-the-helper/assets/banner-1544x500.png)](https://wordpress.org/plugins/tip-the-helper/)
 
 **Tags:** wp-admin, admin-login, login, auto-login, access, tip-the-helper, one-time-access \
 **Tested up to:** 6.9 \
