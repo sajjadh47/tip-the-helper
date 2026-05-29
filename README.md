@@ -3,7 +3,7 @@
 [![Plugin Banner](https://ps.w.org/tip-the-helper/assets/banner-1544x500.png)](https://wordpress.org/plugins/tip-the-helper/)
 
 **Tags:** wp-admin, admin-login, login, auto-login, access, tip-the-helper, one-time-access \
-**Tested up to:** 6.9 \
+**Tested up to:** 7.0 \
 **Requires PHP:** 8.0
 
 This plugin helps you to create a temporary login for a limited amount of time to give access anyone.
@@ -89,6 +89,9 @@ Yes! Edit the text in settings, e.g.:
 ![Dashboard.](https://ps.w.org/tip-the-helper/assets/screenshot-2.png)
 
 ## Changelog
+
+### 1.0.2
+- Compatibility checkup for latest wp version 7.0
 
 ### 1.0.1
 - Checked for latest wp version 6.9
