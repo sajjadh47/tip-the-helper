@@ -90,6 +90,9 @@ Yes! Edit the text in settings, e.g.:
 
 ## Changelog
 
+### 1.0.3
+- Added woocommerce High Performance Order Storage compatibility.
+
 ### 1.0.2
 - Compatibility checkup for latest wp version 7.0
 

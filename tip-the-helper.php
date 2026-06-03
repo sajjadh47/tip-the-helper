@@ -44,6 +44,8 @@ define( 'TIP_THE_HELPER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 define( 'TIP_THE_HELPER_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
+define( 'TIP_THE_HELPER_PLUGIN_FILE', __FILE__ );
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-tip-the-helper-activator.php
