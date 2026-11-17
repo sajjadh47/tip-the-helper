@@ -2,9 +2,9 @@
 Tags: woocommerce tips, gratuity plugin, driver tip, service tip, checkout-add-on
 Contributors: sajjad67
 Author: Sajjad Hossain Sagor
-Tested up to: 7.0
+Tested up to: 7.1
 Requires at least: 5.6
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,8 @@ Yes! Edit the text in settings, e.g.:
 6. There You Will Find Fields To Customize the tipping options.
 
 == Changelog ==
+= 1.0.4 =
+- Compatibility checkup for latest wp version 7.1
 = 1.0.3 =
 - Added woocommerce High Performance Order Storage compatibility.
 = 1.0.2 =
